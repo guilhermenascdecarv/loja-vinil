@@ -28,7 +28,7 @@
 
     <main>
         <button type="button" class="button_cadastro" id="cadastrar_disco">Cadastrar Disco</button>
-        <table id="tableClient" class="records">
+        <table id="tabelaDiscos" class="records">
             <thead>
                 <tr>
                     <th>Álbum</th>
@@ -39,7 +39,7 @@
                 </tr>
             </thead>
             <tbody>
-                <!---->
+                <!--Script-->
             </tbody>
         </table>
 
@@ -51,7 +51,7 @@
                     <span class="fechar_modal" id="fechar_modal">Fechar</span>
                 </header>
                 <form id="form" class="modal_form">
-                    <input type="text" name="album" id="album" data-index="new" class="modal_input" placeholder="Álbum" required>
+                    <input type="text" name="album" id="album" data-indexDisco="novo" class="modal_input" placeholder="Álbum" required>
                     <input type="text" name="artista" id="artista" class="modal_input" placeholder="Artista" required>
                     <input type="number" name="ano_lan" id="ano_lan" class="modal_input" placeholder="Ano de Lançamento" required>
                     <input type="text" name="selo" id="selo" class="modal_input" placeholder="Selo" required>

@@ -8,16 +8,6 @@ const fecharModal = () => {
 }
 
 
-//JSON , Disco Temporário
-const tDisco = {
-    album: "Nu",
-    artista: "Forfun",
-    ano: "2015",
-    selo: "Independente",
-    data: "03/11/2022"
-}
-
-
 //Local Storage
 const getLocalStorage = () => JSON.parse(localStorage.getItem('db_disco')) ?? []
 const setLocalStorage = (dbDisco) => localStorage.setItem("db_disco", JSON.stringify(dbDisco))
@@ -66,11 +56,80 @@ const salvarDisco = () => {
             selo: document.getElementById('selo').value,
             data: document.getElementById('data_loja').value
         }
-        createDisco(disco)
-        fecharModal()
+        const indexDisco = document.getElementById('album').dataset.indexDisco
+        if (indexDisco == "novo") {
+            createDisco(disco)
+            atualizarTabela()
+            fecharModal()
+        } else {
+            updateDisco(indexDisco, disco)
+            atualizarTabela()
+            fecharModal()
+        }
+        
     }
 }
 
+const criarLinha = (disco, indexDisco,) => {
+    const novaLinha = document.createElement('tr')
+    novaLinha.innerHTML = `
+        <td>${disco.album}</td>
+        <td>${disco.artista}</td>
+        <td>${disco.ano}</td>
+        <td>${disco.selo}</td>
+        <td>${disco.data}</td>
+        
+        <td>
+            <button type="button" class="button_cadastro" id="editar-${indexDisco}">Editar</button>
+            <button type="button" class="button_cadastro red" id="deletar-${indexDisco}">Excluir</button>
+        </td>
+    
+    `
+    document.querySelector('#tabelaDiscos>tbody').appendChild(novaLinha)
+}
+
+const limparTabela = () => {
+    const linhas = document.querySelectorAll('#tabelaDiscos>tbody tr')
+    linhas.forEach(linha => linha.parentNode.removeChild(linha))
+}
+
+const preencherCampos = (disco) => {
+    document.getElementById('album').value = disco.album
+    document.getElementById('artista').value = disco.artista
+    document.getElementById('ano_lan').value = disco.ano
+    document.getElementById('selo').value = disco.selo
+    document.getElementById('data_loja').value = disco.data
+    document.getElementById('album').dataset.indexDisco = disco.indexDisco
+}
+const editarDisco = (indexDisco) => {
+    const disco = readDisco()[indexDisco]
+    disco.indexDisco = indexDisco
+    preencherCampos(disco)
+    abrirModal()
+}
+const editarDeletar = (event) => {
+    if (event.target.type == 'button') {
+        const [action, indexDisco]  = event.target.id.split('-')
+
+        if (action == 'editar') {
+        editarDisco(indexDisco)
+        } else {    
+            const disco = readDisco()[indexDisco]
+            const aviso = confirm (`Deseja realmente deletar o disco ${disco.album}?`)
+            if (aviso) {
+                deleteDisco(indexDisco)
+                atualizarTabela()
+            }
+        }
+    }
+}
+
+const atualizarTabela = () => {
+    const dbDisco = readDisco()
+    limparTabela()
+    dbDisco.forEach(criarLinha)
+}
+atualizarTabela()
 
 //Eventos
 document.getElementById('cadastrar_disco').addEventListener('click', abrirModal)
@@ -78,3 +137,5 @@ document.getElementById('fechar_modal').addEventListener('click', fecharModal)
 
 document.getElementById('salvar').addEventListener('click', salvarDisco)
 document.getElementById('cancelar').addEventListener('click', fecharModal)
+
+document.querySelector('#tabelaDiscos>tbody').addEventListener('click', editarDeletar)
