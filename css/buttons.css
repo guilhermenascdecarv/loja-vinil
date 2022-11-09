@@ -1,47 +1,39 @@
 @charset "UTF-8";
 
-:root {
-    --cor0: #000000;
-    --cor1: #9D64ED;
-    --cor3: #CBA;
-}
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
+
 .button_cadastro {
     border-style: none;
     border-radius: 8px;
     height: 35px;
     padding: 6px 12px;
-    background-color: var(--cor1);
-    color: var(--cor0);
+    background-color: #9D64ED;
+    color: #000000;
     font-size: 1rem;
     font-weight: 700;
     cursor: pointer;
-    transition: box-shadow .6s ease;
+    transition: .6s ease;
 }
-.button_cadastro:hover{
+.button_cadastro:hover {
     box-shadow: inset 200px 0 0 #4141413d;
 }
 
+/* Modal */
 .btn_cancelar {
-    background-color: #1FB6FF;
+    background-color: #FF4949;
 }
 
 .btn_salvar {
     background-color: #13CE66;
 }
 
-.red{
-    background-color: #FF4949;
-}
 
-
-
-@media(max-width:480px){
-    .button.mobile{
+@media(max-width:480px) {
+    .button.mobile {
         color:transparent;
         font-size:0;
         width:50px;
@@ -51,7 +43,7 @@
         top: 90vh;
         left: 80vw;
     }
-    .button.mobile::before{
+    .button.mobile::before {
         content: "+";
         color:black;
         font-size:2rem;

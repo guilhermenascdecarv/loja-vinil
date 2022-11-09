@@ -81,10 +81,9 @@ const criarLinha = (disco, indexDisco,) => {
         
         <td>
             <button type="button" class="button_cadastro" id="editar-${indexDisco}">Editar</button>
-            <button type="button" class="button_cadastro red" id="deletar-${indexDisco}">Excluir</button>
-        </td>
-    
-    `
+            <button type="button" class="button_cadastro btn_cancelar" id="deletar-${indexDisco}">Excluir</button>
+        </td> `
+        
     document.querySelector('#tabelaDiscos>tbody').appendChild(novaLinha)
 }
 

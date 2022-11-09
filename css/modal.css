@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+.modal.active {
+    opacity: 1;
+    z-index: 1;
+}
+
 .modal {
     position: fixed;
     top:0;
@@ -11,12 +16,6 @@
     z-index: -1;
     border-radius: 8px;
 }
-
-.modal.active{
-    opacity: 1;
-    z-index: 1;
-}
-
 .modal_content {
     display: flex;
     flex-direction: column;
@@ -32,34 +31,35 @@
     left: 25%;
 }
 
-.modal_header{
+.modal_header {
     display: flex;
     position: relative;
     justify-content: center;
     height: 40px;
     line-height: 40px;
     font-size: 1rem;
-    border-radius: 5px;
+    border-radius: 5px 5px 0 0;
 }
 
-.fechar_modal{
+.fechar_modal {
     position: absolute;
     right: 0;
     display: block;
     width: 40px;
     height: 40px;
+    font-weight: bolder;
     text-align: center;
     user-select: none;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 0 5px 0 0;
 }
 
-.fechar_modal:hover{
+.fechar_modal:hover {
     background-color: #FF4949;
     color: white;
 }
 
-.modal_form{
+.modal_form {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -67,7 +67,7 @@
     padding: 0 20px;
 }
 
-.modal_input{
+.modal_input {
     width: calc(50% - 10px);
     height: 40px;
     outline-style: none;
@@ -77,18 +77,18 @@
     font-size:1rem;
 }
 
-.modal_input:focus{
-    border: 2px solid var(--primary-color);
-    box-shadow: 0 0 3px var(--primary-color);
+.modal_input:focus {
+    border: 2px solid #9D64ED;
+    box-shadow: 0 0 3px #9D64ED;
 }
 
-.modal_footer{
+.modal_footer {
     background-color: inherit;
     text-align: right;
     padding: 0 20px;
 }
 
-@media (max-width:480px){
+@media (max-width:480px) {
     .modal{
         top:100%;
         transition: all 1s ease;
@@ -104,8 +104,4 @@
     .modal-field{
         width:100%;
     }
-}
-/* div com o textod e aviso do delete */
-.modal div {
-    margin-left: 1rem;
 }
